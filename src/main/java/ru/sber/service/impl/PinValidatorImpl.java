@@ -1,9 +1,11 @@
 package ru.sber.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import ru.sber.exceptions.AccountIsLockedException;
 import ru.sber.service.PinValidator;
 import ru.sber.ui.UserInterface;
 
+@RequiredArgsConstructor
 public class PinValidatorImpl implements PinValidator {
     private final UserInterface userInterface;
     private final String pin;
@@ -12,11 +14,6 @@ public class PinValidatorImpl implements PinValidator {
     private long lockedStart;
     private static final int ATTEMPTS_LIMIT = 3;
     private static final int BLOCK_TIME = 10;
-
-    public PinValidatorImpl(UserInterface userInterface, String pin) {
-        this.userInterface = userInterface;
-        this.pin = pin;
-    }
 
     @Override
     public boolean isPinCorrect() {

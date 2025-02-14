@@ -1,12 +1,12 @@
-package ru.sber.states.impl;
+package ru.sber.strategy.impl;
 
 import lombok.AllArgsConstructor;
-import ru.sber.states.enums.StateType;
-import ru.sber.states.TermState;
+import ru.sber.strategy.enums.StrategyType;
+import ru.sber.strategy.TermStrategy;
 import ru.sber.ui.UserInterface;
 
 @AllArgsConstructor
-public class ExitState implements TermState {
+public class ExitStrategy implements TermStrategy {
     UserInterface userInterface;
 
     /**
@@ -14,8 +14,8 @@ public class ExitState implements TermState {
      * @return EXIT
      */
     @Override
-    public StateType operation() {
+    public StrategyType operation() {
         userInterface.showMessage("До свидания!");
-        return StateType.EXIT;
+        return StrategyType.EXIT;
     }
 }

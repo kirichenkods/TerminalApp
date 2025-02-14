@@ -1,12 +1,12 @@
-package ru.sber.states.impl;
+package ru.sber.strategy.impl;
 
 import lombok.AllArgsConstructor;
-import ru.sber.states.enums.StateType;
+import ru.sber.strategy.enums.StrategyType;
 import ru.sber.service.Terminal;
-import ru.sber.states.TermState;
+import ru.sber.strategy.TermStrategy;
 
 @AllArgsConstructor
-public class CheckAccountState implements TermState {
+public class CheckAccountStrategy implements TermStrategy {
     private final Terminal terminal;
 
     /**
@@ -16,9 +16,9 @@ public class CheckAccountState implements TermState {
      * @return Commands.ACCESS
      */
     @Override
-    public StateType operation() {
+    public StrategyType operation() {
         terminal.checkAccount();
 
-        return StateType.ACCESS;
+        return StrategyType.ACCESS;
     }
 }

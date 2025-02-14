@@ -1,16 +1,16 @@
 package ru.sber;
 
-import ru.sber.factory.StateFactory;
+import ru.sber.factory.StrategyFactory;
 import ru.sber.service.PinValidator;
 import ru.sber.service.Terminal;
 import ru.sber.service.TerminalServer;
 import ru.sber.service.impl.PinValidatorImpl;
 import ru.sber.service.impl.TerminalImpl;
 import ru.sber.service.impl.TerminalServerImpl;
-import ru.sber.states.TermContext;
-import ru.sber.states.TermState;
-import ru.sber.states.impl.ExitState;
-import ru.sber.states.impl.MainMenuState;
+import ru.sber.strategy.TermContext;
+import ru.sber.strategy.TermStrategy;
+import ru.sber.strategy.impl.ExitStrategy;
+import ru.sber.strategy.impl.MainMenuStrategy;
 import ru.sber.ui.UserInterface;
 import ru.sber.ui.UserInterfaceConsole;
 
@@ -23,15 +23,15 @@ public class TermApp {
         Terminal terminal = new TerminalImpl(terminalServer, userInterface);
 
         TermContext contextPattern = new TermContext();
-        StateFactory factory = new StateFactory(userInterface, terminal, pinValidator);
+        StrategyFactory factory = new StrategyFactory(userInterface, terminal, pinValidator);
         //работа начинается с главного меню
-        TermState termState = new MainMenuState(userInterface);
-        contextPattern.setContextState(termState);
+        TermStrategy termStrategy = new MainMenuStrategy(userInterface);
+        contextPattern.setTermContext(termStrategy);
 
-        //терминал работает, пока не получит команду на выход (состояние ExitState)
-        while (!(contextPattern.getContextState() instanceof ExitState)) {
-            TermState newState = factory.create(contextPattern.operation());
-            contextPattern.setContextState(newState);
+        //терминал работает, пока не получит команду на выход (состояние ExitStrategy)
+        while (!(contextPattern.getTermContext() instanceof ExitStrategy)) {
+            TermStrategy newState = factory.create(contextPattern.operation());
+            contextPattern.setTermContext(newState);
         }
     }
 }

@@ -1,13 +1,13 @@
-package ru.sber.states.impl;
+package ru.sber.strategy.impl;
 
 import lombok.AllArgsConstructor;
-import ru.sber.states.enums.StateType;
+import ru.sber.strategy.enums.StrategyType;
 import ru.sber.service.Terminal;
 import ru.sber.ui.UserInterface;
-import ru.sber.states.TermState;
+import ru.sber.strategy.TermStrategy;
 
 @AllArgsConstructor
-public class PutMoney implements TermState {
+public class PutMoney implements TermStrategy {
     private final UserInterface userInterface;
     private final Terminal terminal;
 
@@ -16,7 +16,7 @@ public class PutMoney implements TermState {
      * возвращает в меню доступа к счету
      */
     @Override
-    public StateType operation() {
+    public StrategyType operation() {
         String message = "введите сумму для пополнения счета\n" +
                 "Сумма должна быть кратна 100";
         userInterface.showMessage(message);
@@ -24,6 +24,6 @@ public class PutMoney implements TermState {
         if (amount > 0) {
             terminal.putMoney(amount);
         }
-        return StateType.ACCESS;
+        return StrategyType.ACCESS;
     }
 }

@@ -1,12 +1,12 @@
-package ru.sber.states.impl;
+package ru.sber.strategy.impl;
 
 import lombok.AllArgsConstructor;
-import ru.sber.states.enums.StateType;
+import ru.sber.strategy.enums.StrategyType;
 import ru.sber.service.PinValidator;
-import ru.sber.states.TermState;
+import ru.sber.strategy.TermStrategy;
 
 @AllArgsConstructor
-public class CheckPinState implements TermState {
+public class CheckPinStrategy implements TermStrategy {
     private final PinValidator pinValidator;
 
     /**
@@ -18,13 +18,13 @@ public class CheckPinState implements TermState {
      * BLOCK - терминал заблокирован на определенное время
      */
     @Override
-    public StateType operation() {
+    public StrategyType operation() {
         if (pinValidator.isPinCorrect()) {
-            return StateType.ACCESS;
+            return StrategyType.ACCESS;
         }
         if (pinValidator.isBlock()) {
-            return StateType.BLOCK;
+            return StrategyType.BLOCK;
         }
-        return StateType.CHECK_PIN;
+        return StrategyType.CHECK_PIN;
     }
 }

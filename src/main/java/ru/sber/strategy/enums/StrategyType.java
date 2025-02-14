@@ -1,4 +1,4 @@
-package ru.sber.states.enums;
+package ru.sber.strategy.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import lombok.Getter;
  */
 @AllArgsConstructor
 @Getter
-public enum StateType {
+public enum StrategyType {
     EXIT("0"), //выход
     CHECK_PIN("1"), //проверка пин-кода
     CHECK_ACCOUNT("2"), //проверка счета
@@ -23,9 +23,9 @@ public enum StateType {
     /**
      * По переданному значению возвращает соответствующую команду
      */
-    public static StateType getCommandByValue(String command) {
-        StateType[] commands = StateType.values();
-        for (StateType cmd : commands) {
+    public static StrategyType getCommandByValue(String command) {
+        StrategyType[] commands = StrategyType.values();
+        for (StrategyType cmd : commands) {
             if (cmd.getCmd().equals(command)) {
                 return cmd;
             }

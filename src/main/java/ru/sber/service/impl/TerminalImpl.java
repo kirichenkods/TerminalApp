@@ -1,13 +1,14 @@
 package ru.sber.service.impl;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import ru.sber.exceptions.IncorrectMoneyInputException;
 import ru.sber.exceptions.NotEnoughMoneyException;
 import ru.sber.service.Terminal;
 import ru.sber.service.TerminalServer;
 import ru.sber.ui.UserInterface;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class TerminalImpl implements Terminal {
     private final TerminalServer server;
     private final UserInterface userInterface;
